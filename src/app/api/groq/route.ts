@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
       console.error('Error parsing Groq response:', parseError);
       // Fallback to manual parsing if JSON parsing fails
       const content = data.choices[0].message.content;
-      const lines = content.split('\n').filter(line => line.trim());
+      const lines = content.split('\n').filter((line: string) => line.trim());
       
       const suggestions: MemeText[] = [];
       let currentSuggestion: Partial<MemeText> = {};
