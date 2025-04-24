@@ -1,26 +1,58 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #bb86fc;
+  --secondary: #03dac6;
+  --accent: #cf6679;
+  --surface: #f5f5f5;
+  --surface-2: #e0e0e0;
+  --border-radius: 8px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: #121212;
+  --foreground: #ffffff;
+  --surface: #1e1e1e;
+  --surface-2: #2d2d2d;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)];
+    font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-[var(--border-radius)] font-medium transition-all duration-200 ease-in-out;
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--primary)] text-[var(--background)] hover:opacity-90 hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply bg-[var(--surface-2)] text-[var(--foreground)] border border-[var(--primary)] hover:bg-[var(--surface)] hover:-translate-y-0.5;
+  }
+  
+  .card {
+    @apply bg-[var(--surface)] rounded-[var(--border-radius)] shadow-md p-4;
+  }
+  
+  .input {
+    @apply bg-[var(--surface-2)] border-none rounded-[var(--border-radius)] px-3 py-2 text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)];
+  }
+  
+  .meme-text {
+    @apply absolute w-full text-center font-bold uppercase text-white text-shadow-lg cursor-text px-2;
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+  }
 }
